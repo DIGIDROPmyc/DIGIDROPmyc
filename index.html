@@ -36,14 +36,11 @@
     .app { width: min(860px, 100%); margin: 0 auto; }
 
     header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
       margin-bottom: 18px;
     }
 
-    .brand { display: flex; align-items: center; gap: 13px; flex: 0 0 auto; }
+    .header-top { display: flex; align-items: center; gap: 16px; }
+    .brand-copy { margin-top: 7px; }
 
     .logo {
       width: 54px;
@@ -57,8 +54,8 @@
       background: linear-gradient(145deg, #6875ff, #8a52df);
       box-shadow: 0 10px 25px rgba(88, 101, 242, .25);
     }
-    .bridge-mark { flex: 1 1 430px; height: 104px; min-width: 260px; }
-    .bridge-mark img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center right; }
+    .bridge-mark { flex: 1 1 auto; height: 96px; min-width: 0; }
+    .bridge-mark img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center left; }
 
     h1 { margin: 0; font-size: clamp(21px, 4vw, 31px); letter-spacing: -.03em; }
     .subtitle { margin: 3px 0 0; color: var(--muted); font-size: 14px; }
@@ -268,8 +265,9 @@
 
     @media (max-width: 620px) {
       body { padding: 14px; }
-      header { flex-wrap: wrap; gap: 8px; }
-      .bridge-mark { flex-basis: 100%; height: 82px; min-width: 0; }
+      .header-top { gap: 10px; }
+      .bridge-mark { height: 76px; }
+      .brand-copy { margin-top: 5px; }
       .choices, .choices.count { grid-template-columns: 1fr 1fr; }
       .choices .choice:last-child:nth-child(odd) { grid-column: 1 / -1; }
       .card { border-radius: 21px; }
@@ -294,15 +292,15 @@
 <body>
   <main class="app">
     <header>
-      <div class="brand">
+      <div class="header-top">
         <div class="logo">M3</div>
-        <div>
-          <h1 id="appTitle">MORE 3 – Vocabulary Trainer</h1>
-          <p id="appSubtitle" class="subtitle">Unit 1 · Vokabeln &amp; Sätze lernen</p>
+        <div class="bridge-mark" aria-label="Tower Bridge">
+          <img src="tower-bridge.png" alt="Handgezeichnete Tower Bridge">
         </div>
       </div>
-      <div class="bridge-mark" aria-label="Tower Bridge">
-        <img src="tower-bridge.png" alt="Handgezeichnete Tower Bridge">
+      <div class="brand-copy">
+        <h1 id="appTitle">MORE 3 – Vocabulary Trainer</h1>
+        <p id="appSubtitle" class="subtitle">Unit 1 · Vokabeln &amp; Sätze lernen</p>
       </div>
     </header>
 
