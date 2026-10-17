@@ -36,13 +36,19 @@
     .app { width: min(860px, 100%); margin: 0 auto; }
 
     header {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) minmax(280px, .8fr);
+      grid-template-areas: "logo copy bridge";
+      align-items: center;
+      gap: 13px;
       margin-bottom: 18px;
     }
 
-    .header-top { display: flex; align-items: center; gap: 16px; }
-    .brand-copy { margin-top: 7px; }
+    .header-top { display: contents; }
+    .brand-copy { grid-area: copy; min-width: 0; }
 
     .logo {
+      grid-area: logo;
       width: 54px;
       height: 54px;
       display: grid;
@@ -54,8 +60,8 @@
       background: linear-gradient(145deg, #6875ff, #8a52df);
       box-shadow: 0 10px 25px rgba(88, 101, 242, .25);
     }
-    .bridge-mark { flex: 1 1 auto; height: 96px; min-width: 0; }
-    .bridge-mark img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center left; }
+    .bridge-mark { grid-area: bridge; height: 96px; min-width: 0; }
+    .bridge-mark img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center right; }
 
     h1 { margin: 0; font-size: clamp(21px, 4vw, 31px); letter-spacing: -.03em; }
     .subtitle { margin: 3px 0 0; color: var(--muted); font-size: 14px; }
@@ -265,9 +271,15 @@
 
     @media (max-width: 620px) {
       body { padding: 14px; }
-      .header-top { gap: 10px; }
+      header {
+        grid-template-columns: auto minmax(0, 1fr);
+        grid-template-areas:
+          "logo bridge"
+          "copy copy";
+        gap: 5px 10px;
+      }
       .bridge-mark { height: 76px; }
-      .brand-copy { margin-top: 5px; }
+      .bridge-mark img { object-position: center left; }
       .choices, .choices.count { grid-template-columns: 1fr 1fr; }
       .choices .choice:last-child:nth-child(odd) { grid-column: 1 / -1; }
       .card { border-radius: 21px; }
@@ -455,7 +467,7 @@
       { en: "to spill", de: "verschütten", sentence: "Oh no! I spilled coffee on my desk.", sentenceDe: "Oh nein! Ich habe Kaffee auf meinem Schreibtisch verschüttet." },
       { en: "whole", de: "ganze/r/s", sentence: "I hated the melody, so I didn’t listen to the whole song.", sentenceDe: "Ich hasste die Melodie, deshalb hörte ich mir nicht das ganze Lied an." },
       { en: "critic", de: "Kritiker/Kritikerin", sentence: "Music critics write about new songs and albums.", sentenceDe: "Musikkritiker schreiben über neue Lieder und Alben." },
-      { en: "judge", de: "(auf dem Blatt nicht angegeben)", sentence: "The judges on American Idol are very critical.", sentenceDe: "Die Juroren bei American Idol sind sehr kritisch." },
+      { en: "judge", de: "Juror/Jurorin", sentence: "The judges on American Idol are very critical.", sentenceDe: "Die Juroren bei American Idol sind sehr kritisch." },
       { en: "brave", de: "mutig", sentence: "You have to be brave to audition.", sentenceDe: "Du musst mutig sein, um vorzusprechen." },
       { en: "not even", de: "nicht einmal", sentence: "You’re not even good enough to be a background singer.", sentenceDe: "Du bist nicht einmal gut genug, um Backgroundsänger zu sein." },
       { en: "suit", de: "Anzug", sentence: "My dad always wears a suit to work.", sentenceDe: "Mein Vater trägt bei der Arbeit immer einen Anzug." },
