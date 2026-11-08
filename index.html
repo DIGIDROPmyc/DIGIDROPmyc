@@ -617,12 +617,7 @@
     function sentenceIsCorrect(given, expected) {
       const a = normalize(given);
       const b = normalize(expected);
-      if (!a) return false;
-      if (a === b) return true;
-      const distance = levenshtein(a, b);
-      const similarity = 1 - distance / Math.max(a.length, b.length);
-      const maxErrors = b.length >= 70 ? 3 : b.length >= 28 ? 2 : 1;
-      return distance <= maxErrors && similarity >= 0.94;
+      return Boolean(a) && a === b;
     }
 
     function vocabVariants(expected) {
@@ -644,11 +639,7 @@
     function vocabIsCorrect(given, expected) {
       const a = normalize(given);
       if (!a) return false;
-      return vocabVariants(expected).some(v => {
-        if (a === v) return true;
-        const maxErrors = v.length >= 12 ? 2 : (v.length >= 6 ? 1 : 0);
-        return levenshtein(a, v) <= maxErrors;
-      });
+      return vocabVariants(expected).some(v => a === v);
     }
 
     function shuffle(items) {
@@ -836,7 +827,7 @@
       $("bar").style.width = `${state.index / state.questions.length * 100}%`;
       $("prompt").textContent = isSentence ? question.entry.sentenceDe : question.entry.de;
       $("instruction").textContent = isSentence
-        ? "Schreibe den englischen Originalsatz. Satzzeichen, Großschreibung und kleine Tippfehler werden toleriert."
+        ? "Schreibe den englischen Originalsatz. Groß-/Kleinschreibung und Satzzeichen sind egal, aber jedes Wort muss genau stimmen."
         : "Wie heißt das auf Englisch?";
       $("answer").value = "";
       $("answer").disabled = false;
